@@ -24,9 +24,10 @@ fn main() -> Result<(), std::io::Error> {
         output_file,
     } = ProgramArgs::parse();
 
+    let mut hosts = Vec::new();
+
     let mut reader = open_buf_reader(&input_file)?;
 
-    let mut hosts = Vec::with_capacity(10000);
 
     let mut read_chars_len: usize;
 
@@ -71,6 +72,7 @@ fn get_host_from_line(stored_line: &String) -> Option<String> {
     let arrays = stored_line.split(" ");
     let elements: Vec<&str> = arrays.collect();
     if elements.len() != 2 {
+        trace!("Expected 2 elements in each line, got {}, ignoring line", elements.len());
         return None;
     }
     let host_string: String = elements[1].trim_end().into();

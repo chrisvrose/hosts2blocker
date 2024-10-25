@@ -22,7 +22,7 @@ Input:
 ```
 
 Output:
-```
+```csv
 google.com
 github.com
 ```
